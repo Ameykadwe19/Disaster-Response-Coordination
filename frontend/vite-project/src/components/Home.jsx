@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import io from 'socket.io-client';
 import { AlertTriangle, MapPin, Users, FileText, Camera, Globe, Plus, Search, Filter, Edit, Trash2, X } from 'lucide-react';
 
 
@@ -57,6 +57,23 @@ const DisasterResponseApp = () => {
   // Load disasters when component starts
   useEffect(() => {
     fetchDisasters();
+  }, []);
+
+  // WebSocket connection for real-time updates
+  useEffect(() => {
+    const socket = io(API_BASE.replace('/api', ''));
+    
+    socket.on('disaster_updated', (data) => {
+      console.log('Real-time disaster update:', data);
+      fetchDisasters(); // Refresh disaster list
+    });
+    
+    socket.on('social_media_updated', (data) => {
+      console.log('Real-time social media update:', data);
+      setSocialPosts(data);
+    });
+    
+    return () => socket.disconnect();
   }, []);
 
   // Get all disasters from API
