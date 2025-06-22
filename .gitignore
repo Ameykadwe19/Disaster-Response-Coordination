@@ -1,0 +1,33 @@
+# Environment variables
+.env
+backend/.env
+
+# Node modules
+node_modules/
+backend/node_modules/
+frontend/vite-project/node_modules/
+
+# Build outputs
+frontend/vite-project/dist/
+frontend/vite-project/build/
+
+# Logs
+*.log
+logs/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+# SQL files (development only)
+*.sql
