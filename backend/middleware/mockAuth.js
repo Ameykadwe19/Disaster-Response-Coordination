@@ -1,8 +1,8 @@
 // middlewares/mockAuth.js
 
 const mockUsers = {
-  netrunnerX: { id: 'netrunnerX', role: 'admin' },
-  reliefAdmin: { id: 'reliefAdmin', role: 'contributor' }
+  netrunnerX: { id: 'netrunnerX', role: 'contributor' },
+  reliefAdmin: { id: 'reliefAdmin', role: 'admin' }
 };
 
 const mockAuth = (req, res, next) => {

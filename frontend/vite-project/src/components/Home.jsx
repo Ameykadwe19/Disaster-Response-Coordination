@@ -195,6 +195,15 @@ const updateDisaster = async () => {
 
 
  const deleteDisaster = async (disasterId) => {
+  // Find the disaster to check owner
+  const disaster = disasters.find(d => d.id === disasterId);
+  
+  // Check if it's an admin disaster
+  if (disaster?.owner_id === 'reliefAdmin') {
+    alert('⚠️ Admin disasters can only be deleted by admin users. Please contact an administrator.');
+    return;
+  }
+
   if (!window.confirm('Are you sure you want to delete this disaster?')) return;
 
   try {

@@ -176,10 +176,13 @@ const deleteDisaster = async (req, res) => {
     return res.status(404).json({ error: 'Disaster not found' });
   }
 
-  // Skip auth check in development/mock mode
-  const isMockMode = process.env.NODE_ENV === 'development' || req.user.role === 'admin';
-  
-  if (!isMockMode && req.user.id !== existing.data.owner_id && req.user.role !== 'admin') {
+  // Admin disasters can only be deleted by admin users
+  if (existing.data.owner_id === 'reliefAdmin' && req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Admin disasters cannot be deleted by non-admin users' });
+  }
+
+  // Regular auth check
+  if (req.user.id !== existing.data.owner_id && req.user.role !== 'admin') {
     return res.status(403).json({ error: 'Forbidden: not owner or admin' });
   }
 
