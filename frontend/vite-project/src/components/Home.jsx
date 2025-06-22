@@ -4,7 +4,7 @@ import { AlertTriangle, MapPin, Users, FileText, Camera, Globe, Plus, Search, Fi
 
 
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE = 'https://disaster-response-coordination-jd4y.onrender.com/api';
 
 
 const DisasterResponseApp = () => {
