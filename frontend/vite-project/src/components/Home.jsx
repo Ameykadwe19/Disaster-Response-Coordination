@@ -477,6 +477,8 @@ const updateDisaster = async () => {
                 <div className="text-center py-8">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto mb-2"></div>
                   <p className="text-gray-600">Loading disasters...</p>
+                  <p className="text-xs text-gray-400">First load may take 30-60 seconds</p>
+
                 </div>
               ) : disasters.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
