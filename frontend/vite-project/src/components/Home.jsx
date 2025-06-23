@@ -508,7 +508,14 @@ const updateDisaster = async () => {
                       onClick={() => selectDisaster(disaster)}
                     >
                       <div className="mb-3">
-                        <h3 className="font-semibold text-gray-900 mb-1">{disaster.title}</h3>
+                        <div className="flex items-center justify-between mb-1">
+                          <h3 className="font-semibold text-gray-900">{disaster.title}</h3>
+                          {disaster.owner_id === 'reliefAdmin' && (
+                            <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">
+                              Admin
+                            </span>
+                          )}
+                        </div>
                         <div className="flex items-center text-sm text-gray-600 mb-2">
                           <MapPin className="h-4 w-4 mr-1" />
                           <span>{disaster.location_name}</span>
@@ -546,6 +553,10 @@ const updateDisaster = async () => {
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
+                              if (disaster.owner_id === 'reliefAdmin') {
+                                alert('⚠️ Admin disasters cannot be edited by non-admin users. Please contact an administrator.');
+                                return;
+                              }
                               openModal('edit', disaster);
                             }}
                             className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-full transition-colors"
