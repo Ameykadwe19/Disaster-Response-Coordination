@@ -185,11 +185,11 @@ const createDisaster = async () => {
 
 const updateDisaster = async () => {
   try {
-    const response = await fetch(`http://localhost:5000/api/disasters/${editDisaster.id}`, {
+    const response = await fetch(`${API_BASE}/disasters/${editDisaster.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'x-user-id': 'netrunnerX'// Not needed if using mockAuth middleware
+        'x-user-id': 'netrunnerX'
       },
       body: JSON.stringify({
         ...editDisaster,
@@ -206,7 +206,6 @@ const updateDisaster = async () => {
     setShowModal(false);
   } catch (error) {
     console.error('Error updating disaster:', error);
-    console.log('Update called:', req.body);
   }
 };
 
